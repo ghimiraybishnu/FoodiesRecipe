@@ -22,8 +22,12 @@ const list = [
            { list.map((item, index) => (
             <p className="skill-item" key={index}> {item}</p>
            ))}
-            <Link to="/signup" className="btn">Sign Up</Link>
-            <Link to="/login" className="btn">Login</Link>
+
+           <div className="bttns">    
+    <Link to="/signup" className="btn mt-2" style={{ marginRight: '10px' }}>Sign Up</Link>
+    <Link to="/login" className="btn" style={{ marginTop: '10px' }}>Login</Link>
+
+            </div>
         </div>
         </div>
   

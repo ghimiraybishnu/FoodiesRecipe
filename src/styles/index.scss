@@ -14,8 +14,16 @@
 }
 
 
+.signup-button {
+    margin-top: 7px; /* Adjust the value as needed */
+  }
+  
 
 
+
+
+
+  
 
 *{
     margin: 0;
@@ -170,10 +178,10 @@ img{
 @import "partials/footer";
 @import "partials/previous-searches";
 @import "partials/recipes-card";
-
-
-
-
+@import "partials/signup-section";
+@import "partials/login-section";
+@import "partials/explore";
+@import "partials/recipeTile";
 
 
 .main{
@@ -202,6 +210,7 @@ img{
     .container{
         padding-inline: 12vw;
     }
+   
     }
 
 

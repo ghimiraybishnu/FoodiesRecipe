@@ -1,0 +1,89 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.app__searchForm {
+  margin-bottom: 30px;
+}
+
+.app__input {
+  padding: 12px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  margin-right: 15px;
+  width: 300px;
+  transition: border-color 0.3s;
+}
+
+.app__input:focus {
+  outline: none;
+  border-color: #ff6b6b;
+}
+
+.app__submit {
+  padding: 12px 24px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.app__submit:hover {
+  background-color: #0056b3;
+}
+
+.app_healthLabels {
+  padding: 12px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  margin-left: 15px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+}
+
+.app_healthLabels option {
+  font-size: 1rem;
+}
+
+.app__recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.recipeTile {
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.recipeTile:hover {
+  transform: translateY(-5px);
+}
+
+.recipeTile__img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.recipeTile__name {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}

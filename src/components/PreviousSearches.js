@@ -1,5 +1,6 @@
 import { FontAwesomeIcon }  from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export default function PreviousSearches() {
 
@@ -31,9 +32,10 @@ export default function PreviousSearches() {
         ))}
       </div>
       <div className="search-box">
-        <input type="text" placeholder="Search for a recipe.." />
-        <button className="btn">
+        {/* <input type="text" placeholder="Search for a recipe.." /> */}
+        <button className="btn" >
           <FontAwesomeIcon icon={faSearch} />
+          <Link to="/Explore">To</Link>
         </button>
       </div>
     </div>

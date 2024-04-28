@@ -1,39 +1,68 @@
-import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import { useState, useSyncExternalStore } from "react";
+import RecipeTile from "./RecipeTile";
 
 export default function Explore() {
-  const [data, setData] = useState([]);
+  const [query, setquery] = useState("");
+  const [recipes, setrecipes ] = useState([]);
+const [ healthLabels, sethealthLabels ] = useState("vegan");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  var url = `https://api.edamam.com/search?q=${query}&app_id=915274af&app_key=aba1ff8b5438b1109d0a08ccc0470296%09&calories=591-722&health=${healthLabels}`;
+  async function getRecipes() {
+    var result = await Axios.get(url);
+    setrecipes(result.data.hits);
+    console.log(result.data);
+  }
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch("https://edamam-recipe-search.p.rapidapi.com/api/recipes/v2?type=public&co2EmissionsClass=A%2B&field%5B0%5D=uri&beta=true&random=true&cuisineType%5B0%5D=American&imageSize%5B0%5D=LARGE&mealType%5B0%5D=Breakfast&health%5B0%5D=alcohol-cocktail&diet%5B0%5D=balanced&dishType%5B0%5D=Biscuits%20and%20cookies", {
-        headers: {
-          "x-rapidapi-host": "edamam-recipe-search.p.rapidapi.com",
-          "x-rapidapi-key": "YOUR_API_KEY"
-        }
-      });
-      const jsonData = await response.json();
-      setData(jsonData.hits || []); // Assuming the API response has a hits property
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+const onSubmit = (e) => {
+  e.preventDefault();
+  getRecipes();
+
+}
 
   return (
-    <div className="explore">
-      <h2>Explore</h2>
-      <div className="content">
-        {data.map((hit, index) => (
-          <div key={index} className="item">
-            <h3>{hit.recipe.label}</h3>
-            <p>{hit.recipe.source}</p>
-            {/* Add more content fields as needed */}
-          </div>
-        ))}
-      </div>
+    <div className="App">
+      <h1>Explore Food Recipe Plaza </h1>
+      <form className="app__searchForm" onSubmit={onSubmit} >
+        <input className="app__input"
+          type="text"
+          placeholder="Enter Ingridient"
+          value={query}
+          onChange={(e) => setquery(e.target.value)}
+        />
+        <input className="app__submit" type="submit" value="Search" />
+
+        <select className="app_healthLabels" >
+          <option onClick={() => sethealthLabels("") }
+          >...</option>
+          <option onClick={() => sethealthLabels("vegan") }
+          >Vegan</option>
+          <option onClick={() => sethealthLabels("vegetarian") }
+          >Vegetarian</option>
+          <option onClick={() => sethealthLabels("paleo") }
+          >Paleo</option>
+          <option onClick={() => sethealthLabels("dairy-free") }
+          >Dairy-free</option>
+          <option onClick={() => sethealthLabels("gluten-free") }
+          >Gluten-free</option>
+          <option onClick={() => sethealthLabels("wheat-free") }
+          >Wheat-free</option> 
+          <option onClick={() => sethealthLabels("low-sugar") }
+          >Low-sugar</option> 
+          <option onClick={() => sethealthLabels("egg-free") }
+          >Egg-free</option>   
+
+
+           
+        </select>
+
+      </form>
+
+<div className="app__recipes">
+  { recipes.map((recipe) => {
+return <RecipeTile recipe={recipe} key={recipe.recipe.label} />;
+  })}
+</div>
     </div>
   );
 }

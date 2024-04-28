@@ -1,99 +1,92 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Button,
-  Row,
-  Col,
-  Form,
-  FormControl
-} from "react-bootstrap";
+import { Container, Button, Row, Col, Form } from "react-bootstrap";
+
 
 class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      email: "",
-      phoneNumber: "",
-      password: ""
-    };
-  }
+  state = {
+    username: "",
+    email: "",
+    phoneNumber: "",
+    password: ""
+  };
 
-  onChange = e => {
+  handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSignupClick = () => {
-    const userData = {
-      username: this.state.username,
-      email: this.state.email,
-      phoneNumber: this.state.phoneNumber,
-      password: this.state.password
-    };
-    console.log("Sign up " + JSON.stringify(userData));
+  handleSubmit = () => {
+    const { username, email, phoneNumber, password } = this.state;
+    console.log("Sign up data:", { username, email, phoneNumber, password });
   };
 
   render() {
+    const { username, email, phoneNumber, password } = this.state;
+
     return (
-      <Container>
+      <Container className="signup-container">
         <Row>
-          <Col md="4">
-            <h1>Sign up</h1>
+          <Col md="6" className="mx-auto signup-form">
+            <h1 className="signup-header">Sign up</h1>
             <Form>
-              <Form.Group controlId="usernameId">
-                <Form.Label>User name</Form.Label>
+              <Form.Group controlId="usernameId" className="form-group">
+                <Form.Label className="form-label">User name</Form.Label>
                 <Form.Control
                   type="text"
                   name="username"
                   placeholder="Enter user name"
-                  value={this.state.username}
-                  onChange={this.onChange}
+                  value={username}
+                  onChange={this.handleChange}
+                  className="form-input"
                 />
-                <FormControl.Feedback type="invalid"></FormControl.Feedback>
               </Form.Group>
 
-              <Form.Group controlId="emailId">
-                <Form.Label>Email address</Form.Label>
+              <Form.Group controlId="emailId" className="form-group">
+                <Form.Label className="form-label">Email address</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
                   placeholder="Enter email"
-                  value={this.state.email}
-                  onChange={this.onChange}
+                  value={email}
+                  onChange={this.handleChange}
+                  className="form-input"
                 />
-                <FormControl.Feedback type="invalid"></FormControl.Feedback>
               </Form.Group>
 
-              <Form.Group controlId="phoneNumberId">
-                <Form.Label>Phone number</Form.Label>
+              <Form.Group controlId="phoneNumberId" className="form-group">
+                <Form.Label className="form-label">Phone number</Form.Label>
                 <Form.Control
                   type="text"
                   name="phoneNumber"
                   placeholder="Enter phone number"
-                  value={this.state.phoneNumber}
-                  onChange={this.onChange}
+                  value={phoneNumber}
+                  onChange={this.handleChange}
+                  className="form-input"
                 />
-                <FormControl.Feedback type="invalid"></FormControl.Feedback>
               </Form.Group>
 
-              <Form.Group controlId="passwordId">
-                <Form.Label>Create password</Form.Label>
+              <Form.Group controlId="passwordId" className="form-group">
+                <Form.Label className="form-label">Create password</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
                   placeholder="Enter password"
-                  value={this.state.password}
-                  onChange={this.onChange}
+                  value={password}
+                  onChange={this.handleChange}
+                  className="form-input"
                 />
-                <FormControl.Feedback type="invalid"></FormControl.Feedback>
               </Form.Group>
+
+              <Button
+                variant="primary"
+                onClick={this.handleSubmit}
+                className="signup-button"
+              >
+                Sign up
+              </Button>
             </Form>
-            <Button 
-              color="primary"
-              onClick={this.onSignupClick}  
-            >Sign up</Button>
-            <p className="mt-2">
+
+            <p className="mt-3 login-link">
               Already have an account? <Link to="/login">Login</Link>
             </p>
           </Col>

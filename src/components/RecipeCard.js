@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CustomImage from './CustomImage';
 
 
@@ -9,7 +10,7 @@ export default function RecipeCard({recipe}) {
                 <img className='auther-img' src={recipe.authorImg} alt="" />
                 <p className="recipe-title">{recipe.title}</p>
                 <p className="recipe-desc">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
-                 <a className="view-btn" href="#!">VIEW RECIPE</a>
+                <Link className="view-btn" to={`/recipe/${recipe.id}`}>VIEW RECIPE</Link>
             </div>
         </div>
     )

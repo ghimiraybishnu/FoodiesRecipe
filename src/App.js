@@ -13,6 +13,7 @@ import Settings from "./pages/Settings";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Explore from "./components/Explore";
+import RecipeDetailsPage from "./components/RecipeDetailsPage";
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
   <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/explore" element={<Explore />} />
-
+        <Route path="/recipe/:id" element={<RecipeDetailsPage />} />
   
   </Routes>
 
